@@ -6,14 +6,27 @@ public class MapBuilder {
 
     public static HashMap<String, ArrayList<String>> buildTermMap(ArrayList<String> wordList, String[] keys) {
 
-        HashMap<String, ArrayList<String>> hash = new HashMap<>();
-        hash.put(String.valueOf(keys), wordList);
-        if(file.contains(keys)) {
-            wordList.add(word);
+        HashMap<String, ArrayList<String>> myhash = new HashMap<>();
+        String word = readNext(fileName);
+        for (String key : keys) {
+            myhash.put(key, wordList);
+
+            if (word.contains(key)) {
+                if (!wordList.contains(word)) {
+                    wordList.add(word);
+                }
+
+                if (!myhash.containsKey(key)) {
+                    myhash.put(key,wordList);
+                }
+
+            }
         }
-        return hash;
+        return myhash;
     }
 
+    public static HashMap<String, ArrayList<String>> buildAlphaMap(ArrayList<String> wordList){
 
+    }
 
 }
